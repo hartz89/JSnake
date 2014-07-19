@@ -1,0 +1,64 @@
+#sk-logo {
+  width: 300px;
+  max-width: 100%;
+  clear: both;
+  float: left;
+}
+#sk-game {
+  clear: both;
+  float: left;
+}
+#sk-game #sk-settings {
+  text-align: center;
+  display: none;
+}
+#sk-game #sk-settings .sk-game-setting {
+  margin-bottom: 1em;
+}
+#sk-game #sk-settings .sk-game-setting label {
+  margin-right: 0.2em;
+}
+#sk-game.init {
+  width: 300px;
+  max-width: 100%;
+  text-align: center;
+}
+#sk-game.init #sk-pit {
+  display: none;
+}
+#sk-game.init #sk-settings {
+  display: block;
+}
+#sk-game #sk-game-state-btn {
+  margin: 1em auto;
+  font-size: 1.2em;
+  padding: 0.2em 1em;
+  display: block;
+  clear: both;
+}
+#sk-game #sk-pit {
+  float: left;
+  border: 1px solid #aaa;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin-bottom: 1em;
+}
+#sk-game #sk-pit .sk-col {
+  width: 20px;
+  float: left;
+}
+#sk-game #sk-pit .sk-space {
+  width: 20px;
+  height: 20px;
+  float: left;
+  box-sizing: border-box;
+  /* border: 1px solid #ddd; */
+  /* transition: background-color 0.05s; */
+}
+#sk-game #sk-pit .sk-space.sk-apple {
+  background-color: #f00;
+  border-radius: 20px;
+}
+#sk-game #sk-pit .sk-space.sk-bodypart {
+  background-color: DarkGreen;
+}
