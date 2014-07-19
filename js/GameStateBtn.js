@@ -1,3 +1,4 @@
+//this GuiElement controls the starting, pausing, and resuming of the game
 function GameStateBtn(game) {
 	GuiElement.call(this, game, 'button', 'sk-game-state-btn', null);
 	this.getElem().setAttribute('type', 'button');

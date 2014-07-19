@@ -1,3 +1,4 @@
+//tracks the game's setting prompts and the values specified in those prompts
 function Settings(game) {
 	GuiElement.call(this, game, 'div', 'sk-settings', null);
 	this.renderPrompts();
@@ -5,6 +6,7 @@ function Settings(game) {
 Settings.prototype = Object.create(GuiElement.prototype);
 Settings.prototype.constructor = Settings;
 
+//this function should contain all of the instructions on how to build out the different settings prompts
 Settings.prototype.renderPrompts = function() {
 	//game speed
 	var SPEED = 'speed';
@@ -33,14 +35,17 @@ Settings.prototype.renderPrompts = function() {
 
 	/*
 		Either of the above patterns can be followed to create prompts for any
-		desired settings prompts (HTML string or creating DOM node with JS).
+		desired settings prompts (HTML string or creating DOM elem with JS).
 	*/
 };
 
-//a little reflection for your friday afternoon
+//take any setting name and value and set it as a property of this
 Settings.prototype.setSetting = function(settingName, settingValue) {
+	//a little reflection for your friday afternoon
 	this[settingName] = settingValue;
 };
+
+//get a setting by name
 Settings.prototype.getSetting = function(settingName) {
 	return this[settingName];
 };

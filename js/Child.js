@@ -1,4 +1,5 @@
-//the "abstract class" for every object that has a parent object related to it
+//the "superclass" for every object that has a parent object related to it
+//TODO is this the best way to create this relationship?
 function Child(parent) {
 	this.parent = parent;
 };

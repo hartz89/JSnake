@@ -1,4 +1,4 @@
-// the Snake Pit (game board, a 2D array of spaces)
+// the Snake Pit (game board, a matrix of spaces)
 function Pit(game, width, height) {
 	GuiElement.call(this, game, 'div', 'sk-pit', null);
 
@@ -46,23 +46,24 @@ Pit.prototype.getCol = function(x) {
 	return this.cols[x];
 };
 
-//space lookups
+//perform a space lookup based on its x/y position
 Pit.prototype.getSpace = function(x, y) {
-	//wrap around E <--> W
-	if (x >= this.width) {
+	//handle wrapping around if the requested space is out of bounds
+	if (x >= this.width) { //X wrapping
 		x = 0;
 	} else if (x < 0) {
 		x = this.width - 1;
 	}
-	//wrap around N <--> S
-	if (y >= this.height) {
+	if (y >= this.height) { //Y wrapping
 		y = 0;
 	} else if (y < 0) {
 		y = this.height - 1;
 	}
 
+	//actually retrieve the space
 	return this.getCol(x).getSpace(y);
 };
+//get the center of the board (or one short of it if odd)
 Pit.prototype.getCenter = function() {
 	return this.getSpace(
 		Math.floor(this.width/2), 
@@ -70,6 +71,7 @@ Pit.prototype.getCenter = function() {
 	);
 };
 
+//get the array of available/empty spaces
 Pit.prototype.getAllAvailSpaces = function() {
 	return this.emptySpaces;
 };
@@ -85,7 +87,7 @@ Pit.prototype.getAvailSpace = function() {
 	}	
 };
 
-//space availability (for apples)
+//make a space available (so that an apple can be placed there)
 Pit.prototype.makeSpaceAvail = function(space) {
 	if (space instanceof Space) {
 		var spaceIndex = this.getAllAvailSpaces().indexOf(space);
@@ -101,6 +103,7 @@ Pit.prototype.makeSpaceAvail = function(space) {
 
 	return this;
 };
+//make a space unavailable (so that no apple can be placed there)
 Pit.prototype.makeSpaceUnavail = function(space) {
 	if (space instanceof Space) {
 		var spaceIndex = this.getAllAvailSpaces().indexOf(space);

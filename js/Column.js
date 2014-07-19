@@ -1,3 +1,4 @@
+//A column in the pit which contains a number of spaces
 function Column(pit) {
 	GuiElement.call(this, pit, 'div', null, 'sk-col');
 

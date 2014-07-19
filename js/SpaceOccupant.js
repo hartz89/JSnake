@@ -1,4 +1,4 @@
-//an "abstract class" for any object that can occupy a space (ex. Apple, BodyPart... Wall?, Poision?)
+//an "superclass" for any object that can occupy a space
 function SpaceOccupant(space) {
 	Child.call(this, space);
 }

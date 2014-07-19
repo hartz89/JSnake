@@ -94,27 +94,28 @@ Game.prototype.getDelay = function() {
 
 //start the game
 Game.prototype.start = function() {
-
+	//the game can only be started once.  after that it's 'pause' and 'resume'
 	if (!this.started) {
 
 		this.paused = false;
-		//removes the 'init' class
+		//removes the 'init' class (the only class added to the game element)
 		this.getElem().className = '';
 		this.getSettings().hide();
 
 		this.setDelay();
 
-		//TODO countdown timer
+		//TODO countdown timer for game start... 3-2-1
 
-		//randomly place the apple(s)
+		//randomly place the apple(s) in unoccupied spaces
 		for (var a = 0; a < this.getAppleCount(); a++) {
 			this.getPit().getAvailSpace().setOccupant(new Apple());
 		}
 
-		//closure keeps snake and game in scope
+		//create closure so that snake and game can be used in the below fxn definitions
 		var snake = this.getPit().getSnake();
 		var game = this;	
 
+		//every tick of the game timer, this function will execute
 		this.advanceFxn = function() {
 			snake.slither();
 		};
@@ -124,23 +125,23 @@ Game.prototype.start = function() {
 		this.controlHandlerFxn = function(evt) {
 			switch (evt.which) {
 
-				case 37: //left
+				case 37: //left arrow
 				case 65: //A
 					snake.turn('W');
 					break;
 
-				case 38: //up
+				case 38: //up arrow
 				case 87: //W
 					snake.turn('N');
 					break;
 
-				case 39: //right
+				case 39: //right arrow
 				case 68: //D
 					//right
 					snake.turn('E');
 					break;
 
-				case 40: //down
+				case 40: //down arrow
 				case 83: //S
 					snake.turn('S');
 					break;
@@ -156,13 +157,16 @@ Game.prototype.start = function() {
 			}
 		};
 
+		//bind keydown to the constrol handler
 		document.addEventListener('keydown', this.controlHandlerFxn);
 
 		//start a timer running the advance function
 		this.gameTimer = window.setInterval(this.advanceFxn, this.getDelay());
 
+		//turn the game state button into a pause button
 		this.getStateBtn().makePauseBtn();
 
+		//all done, we're started up
 		this.started = true;
 
 	} else {
@@ -207,6 +211,7 @@ Game.prototype.isPaused = function() {
 	return this.paused;
 };
 
+//game over
 Game.prototype.end = function() {
 	this.pause();
 	//this.getStateBtn().makeRestartBtn();
@@ -217,6 +222,7 @@ Game.prototype.end = function() {
 
 };
 
+//add points to the player's score
 Game.prototype.addScore = function(pts) {
 	var points = parseInt(pts);
 
@@ -227,7 +233,6 @@ Game.prototype.addScore = function(pts) {
 	}
 	
 };
-
 Game.prototype.getScore = function() {
 	return this.score;
 };

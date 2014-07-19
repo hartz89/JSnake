@@ -1,4 +1,4 @@
-// a part of the Snake's body (a node in the LinkedList)
+// a part of the Snake's body (similar to LinkedList node)
 function BodyPart(snake, next) {
 	SpaceOccupant.call(this, null);
 	this.nextPart = next;
@@ -20,6 +20,7 @@ BodyPart.prototype.setNextPart = function(part) {
 	return this;
 };
 
+//move to another space
 BodyPart.prototype.moveTo = function(space) {
 	var prevSpace = this.getSpace();
 	prevSpace.vacate();
