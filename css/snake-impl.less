@@ -1,0 +1,104 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 1em;
+}
+
+#snakeImpl {
+	float: left;
+}
+
+#info {
+	float: left;
+	max-width: 200px;
+	text-align: center;
+	margin-right: 2em;
+	margin-left: 1em;
+
+	h1 {
+		margin: 5px 0;
+	}
+
+	#hint {
+		float: left;
+		margin: 1em 0;
+	}
+
+	#gameSettings {
+		float: left;
+		width: 100%;
+
+		.gameSetting {
+			padding-bottom: 0.2em;
+		}
+
+		#appleCount {
+			width: 2em;
+		}
+	}
+	
+	#pauseGame {
+		display: none;
+	}
+
+	.startPause {
+		margin-top: 1em;
+		font-size: 1.2em;
+		padding: 0.2em 1em;
+	}
+}
+
+#main {
+	float: left;
+
+	#gameControls {
+		clear: both;
+		float: left;
+		width: 100%;
+
+		#dPad {
+			display: table;
+			margin: 1em auto;
+			
+			.dPadRow {
+				float: left;
+				clear: both;
+
+				.dPadCol {
+					float: left;
+					font-size: 2em;
+					width: 1.5em;
+					height: 1.5em;
+				}
+
+				.control {
+					box-sizing: border-box;
+					border: 1px solid #aaa;
+					background-color: #ddd;
+					border-radius: 5px;
+					cursor: pointer;
+					font-weight: bold;
+					vertical-align: middle;
+					text-align: center;
+
+					&:hover {
+						background-color: #aaa;
+					}
+				}
+			
+			}
+		}
+	}
+}
+
+#devNotes {
+	padding-top: 1em;
+	clear: both;
+
+	.note {
+		text-align: center;
+		clear: both;
+		font-size: 0.8em;
+		color: #aaa;
+		padding-top: 1em;
+	}
+}

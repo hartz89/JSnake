@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#snakeImpl {
+  float: left;
+}
+
+#main {
+  float: left;
+}
+
+#devNotes {
+  width: 300px;
+  clear: both;
+}
+
+#devNotes .note {
+  text-align: center;
+  font-size: 0.8em;
+  color: #aaa;
+  padding-top: 1em;
+}
