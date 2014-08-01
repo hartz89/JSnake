@@ -1,42 +1,49 @@
-function SettingPrompt(settings, shortName, fullName, contents) {
-	GuiElement.call(this, settings, 'div', null, 'sk-game-setting');
+define(['GuiElement', 'DomUtils'],
+	function(GuiElement, DomUtils){
 
-	//inject the proper DOM structure
-	this.shortName = shortName;
-	var labelHtml = '<label for="' + shortName + '">' + fullName + '</label>';
-	if (isElement(contents)) {
-		this.getElem().innerHTML = labelHtml;
-		this.getElem().appendChild(contents);
-	} else {
-		this.getElem().innerHTML = labelHtml + contents;
-	}	
+		function SettingPrompt(settings, shortName, fullName, contents) {
+			GuiElement.call(this, settings, 'div', null, 'sk-game-setting');
 
-	//select eligible form input (only supports one)
-	this.formControl = this.getElem().querySelectorAll('input,select')[0];
+			//inject the proper DOM structure
+			this.shortName = shortName;
+			var labelHtml = '<label for="' + shortName + '">' + fullName + '</label>';
+			if (DomUtils.isElement(contents)) {
+				this.getElem().innerHTML = labelHtml;
+				this.getElem().appendChild(contents);
+			} else {
+				this.getElem().innerHTML = labelHtml + contents;
+			}	
 
-	//push initial value to Settings
-	this.pushSettingChange(this.formControl.value);
+			//select eligible form input (only supports one)
+			this.formControl = this.getElem().querySelectorAll('input,select')[0];
 
-	//retain "this" as setting for closure
-	var setting = this;
+			//push initial value to Settings
+			this.pushSettingChange(this.formControl.value);
 
-	//listen for change and push accordingly
-	this.formControl.onchange = function() {
-		setting.pushSettingChange(this.value);
-	};
-};
-SettingPrompt.prototype = Object.create(GuiElement.prototype);
-SettingPrompt.prototype.constructor = SettingPrompt;
+			//retain "this" as setting for closure
+			var setting = this;
 
-SettingPrompt.prototype.getSettings = function() {
-	return this.getParent();
-};
+			//listen for change and push accordingly
+			this.formControl.onchange = function() {
+				setting.pushSettingChange(this.value);
+			};
+		};
+		SettingPrompt.prototype = Object.create(GuiElement.prototype);
+		SettingPrompt.prototype.constructor = SettingPrompt;
 
-SettingPrompt.prototype.getShortName = function() {
-	return this.shortName;
-};
+		SettingPrompt.prototype.getSettings = function() {
+			return this.getParent();
+		};
 
-//push the setting value up to the Settings object so the game can access it
-SettingPrompt.prototype.pushSettingChange = function(val) {
-	this.getSettings().setSetting(this.getShortName(), val);
-};
+		SettingPrompt.prototype.getShortName = function() {
+			return this.shortName;
+		};
+
+		//push the setting value up to the Settings object so the game can access it
+		SettingPrompt.prototype.pushSettingChange = function(val) {
+			this.getSettings().setSetting(this.getShortName(), val);
+		};
+
+		return SettingPrompt;
+	}
+);

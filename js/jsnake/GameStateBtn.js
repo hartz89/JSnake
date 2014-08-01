@@ -1,46 +1,53 @@
-//this GuiElement controls the starting, pausing, and resuming of the game
-function GameStateBtn(game) {
-	GuiElement.call(this, game, 'button', 'sk-game-state-btn', null);
-	this.getElem().setAttribute('type', 'button');
+define(['GuiElement'],
+	function(GuiElement) {
 
-	this.startBtnClick = function() {
-		game.start();
-	};
+		//this GuiElement controls the starting, pausing, and resuming of the game
+		function GameStateBtn(game) {
+			GuiElement.call(this, game, 'button', 'sk-game-state-btn', null);
+			this.getElem().setAttribute('type', 'button');
 
-	this.pauseBtnClick = function() {
-		game.pause();
-	};
+			this.startBtnClick = function() {
+				game.start();
+			};
 
-	this.resumeBtnClick = function() {
-		game.resume();
-	};
+			this.pauseBtnClick = function() {
+				game.pause();
+			};
 
-	this.restartBtnClick = function() {
-		game.restart();
-	};
+			this.resumeBtnClick = function() {
+				game.resume();
+			};
 
-	//start button initially
-	this.makeStartBtn();
-}
-GameStateBtn.prototype = Object.create(GuiElement.prototype);
-GameStateBtn.prototype.constructor = GameStateBtn;
+			this.restartBtnClick = function() {
+				game.restart();
+			};
 
-GameStateBtn.prototype.makeStartBtn = function() {
-	this.getElem().innerHTML = 'Start';
-	this.getElem().onclick = this.startBtnClick;
-};
+			//start button initially
+			this.makeStartBtn();
+		}
+		GameStateBtn.prototype = Object.create(GuiElement.prototype);
+		GameStateBtn.prototype.constructor = GameStateBtn;
 
-GameStateBtn.prototype.makePauseBtn = function() {
-	this.getElem().innerHTML = 'Pause';
-	this.getElem().onclick = this.pauseBtnClick;
-};
+		GameStateBtn.prototype.makeStartBtn = function() {
+			this.getElem().innerHTML = 'Start';
+			this.getElem().onclick = this.startBtnClick;
+		};
 
-GameStateBtn.prototype.makeResumeBtn = function() {
-	this.getElem().innerHTML = 'Resume';
-	this.getElem().onclick = this.resumeBtnClick;
-};
+		GameStateBtn.prototype.makePauseBtn = function() {
+			this.getElem().innerHTML = 'Pause';
+			this.getElem().onclick = this.pauseBtnClick;
+		};
 
-GameStateBtn.prototype.makeRestartBtn = function() {
-	this.getElem().innerHTML = 'Play Again';
-	this.getElem().onclick = this.restartBtnClick;
-};
+		GameStateBtn.prototype.makeResumeBtn = function() {
+			this.getElem().innerHTML = 'Resume';
+			this.getElem().onclick = this.resumeBtnClick;
+		};
+
+		GameStateBtn.prototype.makeRestartBtn = function() {
+			this.getElem().innerHTML = 'Play Again';
+			this.getElem().onclick = this.restartBtnClick;
+		};
+
+		return GameStateBtn;
+	}
+);
